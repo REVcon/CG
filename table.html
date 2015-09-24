@@ -6,13 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Table</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+  	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src = "table.js" defer> </script>
+    <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
-<body  onload="BuildTable()">
-    <input  type="button" onclick="AddRow()" value="Add Row">
+<body  onload="BuildTable(), Draw()" onclick="SaveTable()">
+    <input  type="button" onclick="AddRow(), SaveTable()" value="Add Row">
     <input  type="button" onclick="ShowJSON()" value="Export to JSON">
-    <input  type="button" onclick="SaveTable()" value="Save Table">
-    <table id = "mainTable" class ="table table-hover table-bordered">
+    <input  type="button" id="click-elem" value="About">
+    <div class="overlay" id="overlay" style="display:none;"></div>
+    <div class="nonebox" id="nonebox">
+        <a class="box-close" id="box-close" href="#"></a>
+        <canvas id='example'></canvas>
+    </div>
+    <table onmouseout="SaveTable()"id = "mainTable" class ="table table-hover table-bordered">
       <thead>
           <tr>
             <th>Название вершины</th>

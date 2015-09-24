@@ -1,5 +1,17 @@
+var delta = 0;
+var eps = 10;
+var isUp = false;
+
 function AddRow(top, height)
 {
+  if (top == undefined)
+  {
+    top = 'название вершины';
+  }
+  if (height == undefined)
+  {
+    height = '0';
+  }
   var table = document.getElementById('mainTable').getElementsByTagName('tbody')[0];
   var tr = document.createElement('tr');
   tr.innerHTML = '<td contenteditable = "true">' + top + '</td>\n\
@@ -32,9 +44,11 @@ function ShowJSON()
 
 function IsStorageSupported()
 {
-  try {
+  try
+   {
     return 'localStorage' in window && window['localStorage'] !== null;
-} catch (e) {
+  } catch (e)
+ {
     return false;
   }
 }
@@ -66,3 +80,59 @@ function BuildTable()
     }
   }
 }
+
+function Draw()
+{
+  if (240 + delta > 450)
+  {
+    isUp = true;
+  }
+  else if (20 + delta < 0)
+  {
+    isUp = false;
+  }
+  if (isUp)
+  {
+    delta = delta - eps;
+  }
+  else
+  {
+    delta = delta + eps;
+  }
+  var canvas = document.getElementById("example");
+  canvas.height=450;
+  canvas.width=450;
+  var ctx = canvas.getContext("2d");
+  ctx.fillStyle = "orange";
+	ctx.fillRect(0, 40 + delta, 20, 200);
+  ctx.fillRect(0, 20 + delta, 100, 20);
+  ctx.fillRect(80, 40 + delta, 20, 200);
+  ctx.fillStyle = "green";
+  ctx.fillRect(120, 40+ delta, 20, 200);
+  ctx.fillRect(120, 20+ delta, 80, 20);
+  ctx.fillRect(120, 120+ delta, 80, 20);
+  ctx.fillRect(120, 220+ delta, 80, 20);
+  ctx.fillStyle = "brown";
+  ctx.fillRect(220, 40+ delta, 20, 200);
+  ctx.fillRect(220, 20+ delta, 80, 20);
+  ctx.fillRect(280, 20+ delta, 20, 100);
+  ctx.fillRect(220, 120+ delta, 120, 20);
+  ctx.fillRect(320, 120+ delta, 20, 100);
+  ctx.fillRect(220, 220+ delta, 120, 20);
+  setTimeout("Draw()", 20);
+}
+
+$(function() {
+    $('#click-elem').click(function()
+    {
+        $('#overlay').fadeIn('fast',function()
+        {
+            $('#nonebox').animate({'top':'160px'},500);
+        });
+    });
+    $('#box-close').click(function(){
+        $('#nonebox').animate({'top':'-1000px'},500,function(){
+            $('#overlay').fadeOut('fast');
+        });
+    });
+});
