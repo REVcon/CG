@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Table</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src = "table.js" defer> </script>
+    <script src = "pieChart.js"> </script>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+<body  onload="BuildTable(), Draw(), PieChart()" onclick="SaveTable()">
+    <input  type="button" onclick="AddRow(), SaveTable()" value="Add Row">
+    <input  type="button" onclick="ShowJSON()" value="Export to JSON">
+    <input  type="button" id="click-elem" value="About">
+    <input  type="button" onclick="PieChart()" value="UpdatePieChart">
+    <div class="overlay" id="overlay" style="display:none;"></div>
+    <div class="nonebox" id="nonebox">
+        <a class="box-close" id="box-close" href="#"></a>
+        <canvas id='example'> Update browser</canvas>
+    </div>
+    <table onmouseout="SaveTable()"id = "mainTable" class ="table table-hover table-bordered">
+      <thead>
+          <tr>
+            <th>Название вершины</th>
+            <th>Высота вершины</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- <tr >
+              <td contenteditable = "true">Белуха</td>
+              <td contenteditable = "true">4509</td>
+          </tr>
+        <tr>
+          <td contenteditable = "true">Казбек</td>
+          <td contenteditable = "true">5033</td>
+        </tr>
+        <tr>
+          <td contenteditable = "true">Эльбрус</td>
+          <td contenteditable = "true">5416</td>
+       </tr>-->
+    </tbody>
+  </table>
+  <div>
+    <canvas id='pieChart' class="left"> Update browser</canvas>
+    <canvas id="choosenSector" class="help left"> Update browser</canvas>
+  </div>
+</body>
+</html>
